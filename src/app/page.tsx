@@ -1,4 +1,6 @@
 import HalfScreenSection from "@/components/half-screen-section";
+import LoginForm from "@/components/login-form";
+import Title from "@/components/title";
 
 export default function Home() {
   return (
@@ -6,17 +8,15 @@ export default function Home() {
       <img className="absolute z-11 w-full  h-full" src="/bg-inicio.jpg" alt="" />
       <div className="flex absolute z-10 w-full h-full bg-white bg-opacity-10 flex-row space-between">
         <HalfScreenSection>
-          <h1>
+          <Title textColor="text-white" textSize="text-8xl" textBlack>
             Parking
-          </h1>
-          <h1>
+          </Title>
+          <Title textColor="text-yellow-500" textSize="text-5xl" textBlack>
             controle de estacionamento
-          </h1>
+          </Title>
         </HalfScreenSection>
         <HalfScreenSection>
-          <div className="flex bg-white w-1/2 h-2/3 p-5 rounded-3xl justify-center">
-            LOGIN
-          </div>
+          <LoginForm />
         </HalfScreenSection>
       </div>
     </main>
