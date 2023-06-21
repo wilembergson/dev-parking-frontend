@@ -17,6 +17,9 @@
 }
 
 body {
+  display: flex;
+  width: auto;
+  margin: 0;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
