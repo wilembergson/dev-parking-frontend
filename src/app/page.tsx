@@ -11,7 +11,7 @@ export default function Home() {
           <Title textColor="text-white" textSize="text-8xl" textBlack>
             Parking
           </Title>
-          <Title textColor="text-yellow-500" textSize="text-5xl" textBlack>
+          <Title textColor="text-yellow" textSize="text-5xl" textBlack>
             controle de estacionamento
           </Title>
         </HalfScreenSection>

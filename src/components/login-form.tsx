@@ -1,4 +1,6 @@
 import Title from "./title";
+import { TfiEmail } from 'react-icons/tfi'
+import { AiFillLock } from 'react-icons/ai'
 
 export default function LoginForm() {
     return (
@@ -6,9 +8,18 @@ export default function LoginForm() {
             <Title textColor="text-gray-500" textSize="text-4xl" textBlack>
                 Login
             </Title>
-            <form className="flex flex-col items-center w-full mt-10">
-                <input type="email" placeholder="email" className="flex border-yellow-600 border-1 rounded-lg w-4/5 m-3 p-3" />
-                <input type="password" placeholder="senha" className="flex m-3" />
+            <form className="flex flex-col items-center w-full mt-10 font-principal">
+                <section className="flex items-center rounded-lg overflow-hidden pl-3 mb-8 bg-white w-4/5">
+                    <TfiEmail size={25} color="#FFBF00" />
+                    <input type="email" placeholder="email" className="flex w-full border-none focus:outline-none p-3 text-gray-700" />
+                </section>
+                <section className="flex items-center rounded-lg overflow-hidden pl-3 bg-white w-4/5">
+                    <AiFillLock size={25} color="#FFBF00" />
+                    <input type="password" placeholder="senha" className="flex w-full border-1 focus:outline-none p-3 text-gray-700" />
+                </section>
+                <button className="flex bg-yellow text-white text-4xl px-5 py-3 rounded-xl mt-16">
+                    Entrar
+                </button>
             </form>
         </div>
     )
