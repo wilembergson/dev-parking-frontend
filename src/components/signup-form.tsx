@@ -6,7 +6,7 @@ export default function SignupForm({ setForm }: any) {
     return (
         <div className="flex relative flex-col bg-slate-100 xl:w-6/12 w-full  py-16 rounded-3xl items-center" data-aos="flip-left">
             <Title textColor="text-gray-500" textSize="text-4xl" textBlack>
-                Signup
+                Novo usuário
             </Title>
             <form className="flex flex-col items-center w-full mt-10 font-principal">
                 <Input type="text" placehoder="nome" />
