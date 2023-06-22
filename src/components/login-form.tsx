@@ -5,7 +5,7 @@ import FormButtom from "./form-butom";
 
 export default function LoginForm({ setForm }: any) {
     return (
-        <div className="flex relative flex-col bg-slate-100 xl:w-6/12 w-full  py-16 rounded-3xl items-center">
+        <div className="flex relative flex-col bg-slate-100 xl:w-6/12 w-full  py-16 rounded-3xl items-center" data-aos="flip-right">
             <Title textColor="text-gray-500" textSize="text-4xl" textBlack>
                 Login
             </Title>
