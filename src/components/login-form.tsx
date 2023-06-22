@@ -1,10 +1,11 @@
 import Title from "./title";
 import { TfiEmail } from 'react-icons/tfi'
 import { AiFillLock } from 'react-icons/ai'
+import FormButtom from "./form-butom";
 
-export default function LoginForm() {
+export default function LoginForm({ setForm }: any) {
     return (
-        <div className="flex flex-col bg-slate-100 w-1/2 h-2/3 p-5 pt-16 rounded-3xl items-center">
+        <div className="flex relative flex-col bg-slate-100 xl:w-6/12 w-full  py-16 rounded-3xl items-center">
             <Title textColor="text-gray-500" textSize="text-4xl" textBlack>
                 Login
             </Title>
@@ -17,9 +18,12 @@ export default function LoginForm() {
                     <AiFillLock size={25} color="#FFBF00" />
                     <input type="password" placeholder="senha" className="flex w-full border-1 focus:outline-none p-3 text-gray-700" />
                 </section>
-                <button className="flex bg-yellow text-white text-4xl px-5 py-3 rounded-xl mt-16">
+                <h3 onClick={() => setForm('signup')} className="flex mt-10 text-gray-500 font-black cursor-pointer hover:text-yellow duration-500">
+                    Registrar novo usuário
+                </h3>
+                <FormButtom>
                     Entrar
-                </button>
+                </FormButtom>
             </form>
         </div>
     )

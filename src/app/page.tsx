@@ -1,12 +1,16 @@
+'use client'
 import HalfScreenSection from "@/components/half-screen-section";
 import LoginForm from "@/components/login-form";
+import SignupForm from "@/components/signup-form";
 import Title from "@/components/title";
+import { useState } from "react";
 
 export default function Home() {
+  const [form, setForm] = useState('login')
   return (
-    <main className="flex min-h-screen w-full h-full flex-col items-center">
-      <img className="absolute z-11 w-full  h-full" src="/bg-inicio.jpg" alt="" />
-      <div className="flex absolute z-10 w-full h-full bg-white bg-opacity-10 flex-row space-between">
+    <main className="flex relative min-h-screen w-full h-full flex-col items-center">
+      <img className="absolute z-11 w-full h-full" src="/bg-inicio.jpg" alt="" />
+      <div className="flex absolute z-10 w-full h-full bg-white bg-opacity-10 sm:flex-row flex-col space-between">
         <HalfScreenSection>
           <Title textColor="text-white" textSize="text-8xl" textBlack>
             Parking
@@ -16,7 +20,8 @@ export default function Home() {
           </Title>
         </HalfScreenSection>
         <HalfScreenSection>
-          <LoginForm />
+          {form === 'login' ? <LoginForm setForm={setForm} /> : <SignupForm setForm={setForm} />}
+
         </HalfScreenSection>
       </div>
     </main>
