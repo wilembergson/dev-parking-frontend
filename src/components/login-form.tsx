@@ -28,8 +28,6 @@ export default function LoginForm({ setForm }: any) {
             const res = await api.login(login)
             localStorage.setItem('token', res.data.token)
             router.push('/home')
-            //const user = await api.validateToken()
-            //console.log(user.data)
         } catch (error: any) {
             setLoading(false)
             const errorMessage = (

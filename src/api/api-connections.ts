@@ -1,6 +1,5 @@
 import axios from "axios"
 import API_URL from "./api-url"
-import { headers } from "next/dist/client/components/headers"
 
 export type Signup = {
     name: string
@@ -13,7 +12,6 @@ export type Login = {
     email: string
     password: string
 }
-const token: any = localStorage.getItem("token")
 
 async function signup(data: Signup) {
     const response = await axios.post(`${API_URL}/auth/signup`, data)
@@ -25,7 +23,7 @@ async function login(data: Login) {
     return response
 }
 
-async function validateToken() {
+async function validateToken(token: string) {
     return await axios.get(`${API_URL}/auth/valid-token`, {
         headers: {
             authorization: token

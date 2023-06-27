@@ -1,5 +1,9 @@
-export default function Home(){
-    return(
-        <h1>Home</h1>
+import PrivateRoute from "@/components/private-route";
+
+export default function Home() {
+    return (
+        <PrivateRoute>
+            <h1>Home</h1>
+        </PrivateRoute>
     )
 }
