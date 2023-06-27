@@ -1,31 +1,29 @@
 'use client'
-import api from "@/api/api-connections"
 import { ReactNode, useEffect, useState } from "react"
 import { useRouter } from "next/navigation";
-import { errorToast } from "@/utils/toasts";
-import AcessDenied from "./acess-denied";
+import { useGlobalContext } from "@/app/contexts/user"
+import api from "@/api/api-connections"
+import Loading from "./loading"
 
 type Props = {
     children: ReactNode
 }
 
 export default function PrivateRoute({ children }: Props) {
+    const { setUserId, setUserName } = useGlobalContext()
     const router = useRouter()
-    const [allow, setAllow] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     async function validate() {
         try {
             const token: any = localStorage.getItem("token")
-            const tokenData = await api.validateToken(token)
-            setAllow(true)
-            console.log(tokenData)
-            /*if(!tokenData){
-                router.push('/')
-            }*/
+            const tokenRes = await api.validateToken(token)
+            setUserId(tokenRes.data.id)
+            setUserName(tokenRes.data.name)
+            setLoading(false)
         } catch (error: any) {
-            //alert(error.response.data.message)
             localStorage.clear()
-            //router.push("/")
+            router.push("/")
         }
     }
 
@@ -34,7 +32,13 @@ export default function PrivateRoute({ children }: Props) {
     })
     return (
         <main className="flex relative min-h-screen w-full h-full flex-col items-center">
-            {(allow) ? children : <AcessDenied />}
+            {
+                (loading) ?
+                    <div className="flex w-full min-h-screen justify-center items-center">
+                        <Loading />
+                    </div>
+                    : children
+            }
         </main>
     )
 }

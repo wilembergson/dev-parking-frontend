@@ -11,9 +11,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
   const [form, setForm] = useState('login')
+  
   useEffect(() => {
     Aos.init({ duration: 1000 })
   }, [])
+
   return (
     <main className="flex relative min-h-screen w-full h-full flex-col items-center">
       <img className="absolute z-11 w-full h-full" src="/bg-inicio.jpg" alt="" />

@@ -1,3 +1,4 @@
+import { GlobalContextProvider } from './contexts/user'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -20,7 +21,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <GlobalContextProvider>
+          {children}
+        </GlobalContextProvider>
+      </body>
     </html>
   )
 }
