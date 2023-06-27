@@ -3,6 +3,7 @@ import api from "@/api/api-connections"
 import { ReactNode, useEffect, useState } from "react"
 import { useRouter } from "next/navigation";
 import { errorToast } from "@/utils/toasts";
+import AcessDenied from "./acess-denied";
 
 type Props = {
     children: ReactNode
@@ -21,7 +22,7 @@ export default function PrivateRoute({ children }: Props) {
             /*if(!tokenData){
                 router.push('/')
             }*/
-        } catch (error:any) {
+        } catch (error: any) {
             //alert(error.response.data.message)
             localStorage.clear()
             //router.push("/")
@@ -32,8 +33,8 @@ export default function PrivateRoute({ children }: Props) {
         validate()
     })
     return (
-    <>
-        {(allow) ? children : <><h1>Não autorizado</h1></>}
-    </>
+        <main className="flex relative min-h-screen w-full h-full flex-col items-center">
+            {(allow) ? children : <AcessDenied />}
+        </main>
     )
 }
