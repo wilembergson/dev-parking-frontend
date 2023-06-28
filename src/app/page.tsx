@@ -8,10 +8,11 @@ import LoginForm from "@/components/login-form";
 import SignupForm from "@/components/signup-form";
 import Title from "@/components/title";
 import 'react-toastify/dist/ReactToastify.css';
+import { FaCar } from 'react-icons/fa'
 
 export default function Home() {
   const [form, setForm] = useState('login')
-  
+
   useEffect(() => {
     Aos.init({ duration: 1000 })
   }, [])
@@ -22,7 +23,8 @@ export default function Home() {
       <div className="flex absolute z-10 w-full h-full bg-white bg-opacity-10 sm:flex-row flex-col space-between">
         <ToastContainer />
         <HalfScreenSection  >
-          <div data-aos="flip-up">
+          <div className="flex flex-col items-center" data-aos="flip-up">
+            <FaCar size={120} color='FFBF00'/>
             <Title textColor="text-yellow" textSize="text-8xl" textBlack>
               Parking
             </Title>

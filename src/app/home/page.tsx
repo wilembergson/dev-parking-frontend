@@ -6,6 +6,7 @@ import HeaderOption from "@/components/header-option";
 import Header from "@/components/Header";
 import { useEffect, useState } from "react";
 import LogoutModal from "@/components/logout-modal";
+import { FaCar } from 'react-icons/fa';
 
 export default function Home() {
     const { userId, userName } = useGlobalContext()
@@ -13,13 +14,14 @@ export default function Home() {
 
     useEffect(() => {
         Aos.init({ duration: 500 })
-      }, [])
+    }, [])
 
     return (
         <PrivateRoute>
             <>
                 <Header>
-                    <h1 className="text-3xl font-black text-yellow">
+                    <h1 className="flex justify-center items-center cursor-default text-3xl font-black text-yellow">
+                        <FaCar />
                         Parking
                     </h1>
                     <div className="flex flex-row">
