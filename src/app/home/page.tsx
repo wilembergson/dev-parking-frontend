@@ -3,8 +3,8 @@ import PrivateRoute from "@/components/private-route";
 import { useGlobalContext } from "../contexts/user";
 import HeaderOption from "@/components/header-option";
 import Header from "@/components/Header";
-import Modal from "@/components/modal";
 import { useEffect, useState } from "react";
+import LogoutModal from "@/components/logout-modal";
 
 export default function Home() {
     const { userId, userName } = useGlobalContext()
@@ -30,7 +30,7 @@ export default function Home() {
                 </Header>
                 <h1>MAIN CONTENT</h1>
             </>
-            <Modal isVisible={showLogout} close={() => setShowLogout(false)} />
+            <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />
         </PrivateRoute>
     )
 }

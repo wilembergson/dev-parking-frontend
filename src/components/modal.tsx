@@ -1,16 +1,17 @@
-import { useState } from "react"
+import { ReactNode } from "react"
 
 type Props = {
     isVisible: boolean
-    close: any
+    //close: any
+    children: ReactNode
+
 }
 
-export default function Modal({ isVisible, close }: Props) {
-    //const [visible, setVisible] = useState(isVisible)
+export default function Modal({ isVisible, children}: Props) {
     if(!isVisible) return null
     return (
-        <div onClick={() => close(false)} className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-            Modal
+        <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+            {children}
         </div>
     )
 }
