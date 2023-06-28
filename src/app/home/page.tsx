@@ -1,4 +1,5 @@
 'use client'
+import Aos from 'aos'
 import PrivateRoute from "@/components/private-route";
 import { useGlobalContext } from "../contexts/user";
 import HeaderOption from "@/components/header-option";
@@ -10,11 +11,15 @@ export default function Home() {
     const { userId, userName } = useGlobalContext()
     const [showLogout, setShowLogout] = useState(false)
 
+    useEffect(() => {
+        Aos.init({ duration: 500 })
+      }, [])
+
     return (
         <PrivateRoute>
             <>
                 <Header>
-                    <h1 className="text-3xl font-black">
+                    <h1 className="text-3xl font-black text-yellow">
                         Parking
                     </h1>
                     <div className="flex flex-row">

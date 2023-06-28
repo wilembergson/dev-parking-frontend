@@ -21,12 +21,12 @@ export default function Home() {
       <img className="absolute z-11 w-full h-full" src="/bg-inicio.jpg" alt="" />
       <div className="flex absolute z-10 w-full h-full bg-white bg-opacity-10 sm:flex-row flex-col space-between">
         <ToastContainer />
-        <HalfScreenSection data-aos="flip-up">
+        <HalfScreenSection  >
           <div data-aos="flip-up">
-            <Title textColor="text-white" textSize="text-8xl" textBlack>
+            <Title textColor="text-yellow" textSize="text-8xl" textBlack>
               Parking
             </Title>
-            <Title textColor="text-yellow" textSize="text-5xl" textBlack>
+            <Title textColor="text-white" textSize="text-5xl" textBlack>
               controle de estacionamento
             </Title>
           </div>
