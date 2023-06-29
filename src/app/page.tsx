@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <main className="flex relative min-h-screen w-full h-full flex-col items-center">
       <img className="absolute z-11 w-full h-full" src="/bg-inicio.jpg" alt="" />
-      <div className="flex absolute z-10 w-full h-full bg-white bg-opacity-10 sm:flex-row flex-col space-between">
+      <div className="flex absolute z-10 w-full h-full bg-white bg-opacity-20 sm:flex-row flex-col space-between">
         <ToastContainer />
         <HalfScreenSection  >
           <div className="flex flex-col items-center" data-aos="flip-up">

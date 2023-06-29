@@ -6,13 +6,16 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    fontFamily:{
+    fontFamily: {
       'principal': ['Outfit', 'sans-serif']
     },
     extend: {
-      colors:{
+      colors: {
         'yellow': '#FFBF00',
-        'yellow2': '#FACC2E'
+        'yellow2': '#FACC2E',
+        'gray': '#424242',
+        'gray-clear': '#585858',
+        'gray-clear-2': '#848484'
       }
     },
   },

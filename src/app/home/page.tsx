@@ -37,11 +37,11 @@ export default function Home() {
                     </section>
                 </Header>
                 <main className="flex relative min-h-screen w-full h-full flex-col items-center bg-white">
-                    <section className='flex justify-end items-center sm:w-3/5 w-full pt-4 pb-2 sm:px-0 px-2 border border-b-2 border-t-0 border-x-0 border-gray-500'>
-                        <h1 className='text-xl text-gray-700 font-black mr-4'>
+                    <section className='flex justify-end items-center sm:w-3/5 w-full pt-4 pb-2 sm:px-0 px-2 border border-b-2 border-t-0 border-x-0 border-gray-clear'>
+                        <h1 className='text-xl text-gray-clear font-black mr-4'>
                             Olá, {userName}
                         </h1>
-                        <div className='flex cursor-pointer text-gray-700 hover:text-yellow transition duration-500'>
+                        <div className='flex cursor-pointer text-gray-clear hover:text-yellow transition duration-500'>
                             <IoIosSettings size={32} />
                         </div>
                     </section>
