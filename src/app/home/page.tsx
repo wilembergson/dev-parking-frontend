@@ -8,10 +8,12 @@ import { useEffect, useState } from "react";
 import LogoutModal from "@/components/logout-modal";
 import { FaCar, FaPowerOff } from 'react-icons/fa';
 import { IoIosSettings } from 'react-icons/io'
+import UserConfigModal from '@/components/user-config-modal';
 
 export default function Home() {
     const { userId, userName } = useGlobalContext()
     const [showLogout, setShowLogout] = useState(false)
+    const [showUserConfig, setShowUserConfig] = useState(false)
 
     useEffect(() => {
         Aos.init({ duration: 1000 })
@@ -29,7 +31,7 @@ export default function Home() {
                         <div className="flex flex-row">
                             <HeaderOption onClick={() => setShowLogout(true)}>
                                 <section className='flex justify-between items-center'>
-                                    <FaPowerOff/>
+                                    <FaPowerOff />
                                     <h1 className='flex ml-2'>sair</h1>
                                 </section>
                             </HeaderOption>
@@ -41,13 +43,15 @@ export default function Home() {
                         <h1 className='text-xl text-gray-clear font-black mr-4'>
                             Olá, {userName}
                         </h1>
-                        <div className='flex cursor-pointer text-gray-clear hover:text-yellow transition duration-500'>
+                        <div className='flex cursor-pointer text-gray-clear hover:text-yellow transition duration-500'
+                            onClick={() => setShowUserConfig(true)}>
                             <IoIosSettings size={32} />
                         </div>
                     </section>
                 </main>
             </>
             <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />
+            <UserConfigModal isVisible={showUserConfig} onClick={() => setShowUserConfig(false)} />
         </PrivateRoute>
     )
 }
