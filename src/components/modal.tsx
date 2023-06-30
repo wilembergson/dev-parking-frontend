@@ -2,7 +2,6 @@ import { ReactNode } from "react"
 
 type Props = {
     isVisible: boolean
-    //close: any
     children: ReactNode
 
 }

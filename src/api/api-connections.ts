@@ -31,9 +31,18 @@ async function validateToken(token: string) {
     })
 }
 
+async function getUserInfo(id:string, token: string) {
+    return await axios.get(`${API_URL}/user/${id}`, {
+        headers: {
+            authorization: token
+        }
+    })
+}
+
 const api = {
     signup,
     login,
-    validateToken
+    validateToken,
+    getUserInfo
 }
 export default api

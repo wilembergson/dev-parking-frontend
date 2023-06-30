@@ -22,7 +22,7 @@ export default function LogoutModal({ isVisible, onClick }: Props) {
     return (
         <Modal isVisible={isVisible}>
             {!loading ?
-                <div onClick={() => null} className="flex flex-col justify-center md:m-0 m-5 items-center bg-white shadow-2xl rounded-2xl py-12" data-aos="zoom-out">
+                <div onClick={() => null} className="flex flex-col justify-center md:m-0 m-5 items-center bg-white shadow-2xl rounded-2xl py-12" data-aos="zoom-in">
                     <FaPowerOff size={70} color="#FFBF00" />
                     <h1 className="font-principal font-black text-3xl flex-wrap w-3/4 text-center text-gray-clear my-10">
                         Tem certeza que deseja encerrar a sessão?

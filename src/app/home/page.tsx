@@ -16,7 +16,7 @@ export default function Home() {
     const [showUserConfig, setShowUserConfig] = useState(false)
 
     useEffect(() => {
-        Aos.init({ duration: 1000 })
+        Aos.init({ duration: 500 })
     })
 
     return (
