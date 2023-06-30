@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Loading from "./loading";
 import { useGlobalContext } from "@/app/contexts/user";
 import api from "@/api/api-connections";
-import { errorToast } from "@/utils/toasts";
+import { errorToast, updateToast } from "@/utils/toasts";
 import { BsCheckAll } from 'react-icons/bs'
 import { TfiEmail } from "react-icons/tfi";
 import { AiFillLock } from "react-icons/ai";
@@ -74,6 +74,21 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
         onClick(false)
     }
 
+    async function updateUser() {
+        try {
+            const token = localStorage.getItem('token')
+            await api.updateUser(userId, token!, updateData)
+            ok()
+        } catch (error: any) {
+            const errorMessage = (
+                (error.response.data.message.message)
+                    ? error.response.data.message.message[0]
+                    : error.response.data.message
+            )
+            errorToast(errorMessage)
+        }
+    }
+
     useEffect(() => {
         loadUserData()
     })
@@ -97,7 +112,8 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
                                 <span className="text-purple-500">EMAIL:</span> {userData.email}
                             </h2>
                         </section>
-                        <form className="flex flex-col items-center sm:w-1/2 w-full sm:mt-0 mt-10 font-principal pb-4">
+                        <form className="flex flex-col items-center sm:w-1/2 w-full sm:mt-0 mt-10 font-principal pb-4"
+                            onSubmit={() => updateUser()}>
                             <h2 className="text-xl text-gray-clear font-black mb-10">
                                 Atualizar dados
                             </h2>
@@ -139,7 +155,8 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
                             </section>
                             <button
                                 className={`flex items-center font-principal bg-yellow hover:bg-yellow2 duration-500 text-white text-2xl px-4 py-2 rounded-xl mt-10
-                                ${!isDisabledEmail && !isDisabledPassword ? 'pointer-events-none opacity-50' : ''}`}>
+                                ${!isDisabledEmail && !isDisabledPassword ? 'pointer-events-none opacity-50' : ''}`}
+                            >
                                 <RxUpdate /> Atualizar
                             </button>
                         </form>

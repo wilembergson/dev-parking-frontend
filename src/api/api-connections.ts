@@ -13,6 +13,11 @@ export type Login = {
     password: string
 }
 
+export type UpdateUser = {
+    email?: string
+    password?: string
+}
+
 async function signup(data: Signup) {
     const response = await axios.post(`${API_URL}/auth/signup`, data)
     return response
@@ -31,7 +36,7 @@ async function validateToken(token: string) {
     })
 }
 
-async function getUserInfo(id:string, token: string) {
+async function getUserInfo(id: string, token: string) {
     return await axios.get(`${API_URL}/user/${id}`, {
         headers: {
             authorization: token
@@ -39,10 +44,21 @@ async function getUserInfo(id:string, token: string) {
     })
 }
 
+async function updateUser(id: string, token: string, data: UpdateUser) {
+    return await axios.put(`${API_URL}/user/${id}`,
+        data,
+        {
+            headers: {
+                authorization: token
+            }
+        })
+}
+
 const api = {
     signup,
     login,
     validateToken,
-    getUserInfo
+    getUserInfo,
+    updateUser
 }
 export default api

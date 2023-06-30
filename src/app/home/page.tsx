@@ -1,5 +1,6 @@
 'use client'
 import Aos from 'aos'
+import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from "@/components/private-route";
 import { useGlobalContext } from "../contexts/user";
 import HeaderOption from "@/components/header-option";
