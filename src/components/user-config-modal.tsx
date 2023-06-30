@@ -5,9 +5,9 @@ import { useGlobalContext } from "@/app/contexts/user";
 import api from "@/api/api-connections";
 import { errorToast } from "@/utils/toasts";
 import { BsCheckAll } from 'react-icons/bs'
-import Input from "./input";
 import { TfiEmail } from "react-icons/tfi";
 import { AiFillLock } from "react-icons/ai";
+import { RxUpdate } from 'react-icons/rx'
 
 type Props = {
     isVisible: boolean
@@ -67,7 +67,7 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
         setUpdateData({ ...updateData, [target.name]: target.value })
     }
 
-    function ok(){
+    function ok() {
         setUpdateData({})
         setIsDisabledEmail(false)
         setIsDisabledPassword(false)
@@ -81,12 +81,12 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
     return (
         <Modal isVisible={isVisible}>
             {!loading ?
-                <div onClick={() => null} className="flex font-principal  flex-col w-1/2 shadow-lg justify-center overflow-hidden items-center bg-white rounded-2xl" data-aos="zoom-in">
+                <div onClick={() => null} className="flex font-principal  flex-col sm:w-1/2 w-full shadow-lg justify-center overflow-hidden items-center bg-white rounded-2xl" data-aos="zoom-in">
                     <h1 className="font-principal font-black text-3xl flex-wrap w-full p-3 text-center bg-purple-500 text-white">
                         Informações do usuário
                     </h1>
-                    <div className="flex w-full pt-4 px-4">
-                        <section className="flex flex-col w-1/2 p-2 border border-r-2 border-l-0 border-y-0 border-purple-200">
+                    <div className="flex sm:flex-row flex-col w-full pt-4 px-4">
+                        <section className="flex flex-col w-1/2 p-2 border sm:border-r-2 border-r-0 border-l-0 border-y-0 border-purple-200">
                             <h2 className="text-xl text-gray-clear font-black my-2">
                                 <span className="text-purple-500">NOME:</span> {userData.name}
                             </h2>
@@ -97,8 +97,8 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
                                 <span className="text-purple-500">EMAIL:</span> {userData.email}
                             </h2>
                         </section>
-                        <form className="flex flex-col items-center w-1/2 font-principal pb-4">
-                            <h2 className="text-xl text-gray-clear font-black mb-6">
+                        <form className="flex flex-col items-center sm:w-1/2 w-full sm:mt-0 mt-10 font-principal pb-4">
+                            <h2 className="text-xl text-gray-clear font-black mb-10">
                                 Atualizar dados
                             </h2>
                             <section className="flex items-center rounded-lg overflow-hidden pl-3 mb-8 bg-white w-4/5">
@@ -117,7 +117,6 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
                                     onChange={(e: any) => handleChange(e)}
                                     name="email"
                                     value={updateData!.email!}
-                                    required
                                 />
                             </section>
                             <section className="flex items-center rounded-lg overflow-hidden pl-3 bg-white w-4/5">
@@ -136,9 +135,13 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
                                     onChange={(e: any) => handleChange(e)}
                                     name="password"
                                     value={updateData!.password}
-                                    required
                                 />
                             </section>
+                            <button
+                                className={`flex items-center font-principal bg-yellow hover:bg-yellow2 duration-500 text-white text-2xl px-4 py-2 rounded-xl mt-10
+                                ${!isDisabledEmail && !isDisabledPassword ? 'pointer-events-none opacity-50' : ''}`}>
+                                <RxUpdate /> Atualizar
+                            </button>
                         </form>
                     </div>
                     <section className="flex w-3/4 justify-around">
