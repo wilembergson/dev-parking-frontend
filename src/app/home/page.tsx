@@ -10,14 +10,38 @@ import LogoutModal from "@/components/logout-modal";
 import { FaCar, FaPowerOff } from 'react-icons/fa';
 import { IoIosSettings } from 'react-icons/io'
 import UserConfigModal from '@/components/user-config-modal';
+import api from '@/api/api-connections';
+import { errorToast } from '@/utils/toasts';
+import Vacancy from '@/components/vacancy';
+
+type Vacancie = {
+    id: string,
+    localization: string,
+    occupied: string
+}
 
 export default function Home() {
     const { userId, userName } = useGlobalContext()
     const [showLogout, setShowLogout] = useState(false)
     const [showUserConfig, setShowUserConfig] = useState(false)
+    const [vacancies, setVacancies] = useState<Vacancie[]>([])
 
+    async function getVacancies() {
+        try {
+            const res = await api.listVacancies()
+            setVacancies(res.data)
+        } catch (error: any) {
+            const errorMessage = (
+                (error.response.data.message.message)
+                    ? error.response.data.message.message[0]
+                    : error.response.data.message
+            )
+            errorToast(errorMessage)
+        }
+    }
     useEffect(() => {
         Aos.init({ duration: 500 })
+        getVacancies()
     })
 
     return (
@@ -49,6 +73,11 @@ export default function Home() {
                             <IoIosSettings size={32} />
                         </div>
                     </section>
+                    <div className="flex flex-wrap justify-between sm:w-3/5 w-full mt-6">
+                        {vacancies.map((item) => (
+                            <Vacancy key={item.id} vacancy={item}/>
+                        ))}
+                    </div>
                 </main>
             </>
             <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />

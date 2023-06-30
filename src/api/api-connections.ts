@@ -54,11 +54,16 @@ async function updateUser(id: string, token: string, data: UpdateUser) {
         })
 }
 
+async function listVacancies() {
+    return await axios.get(`${API_URL}/vacancy`)
+}
+
 const api = {
     signup,
     login,
     validateToken,
     getUserInfo,
-    updateUser
+    updateUser,
+    listVacancies
 }
 export default api
