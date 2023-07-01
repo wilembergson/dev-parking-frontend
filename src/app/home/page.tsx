@@ -18,6 +18,7 @@ type Vacancie = {
     id: string,
     localization: string,
     occupied: string
+    type: string
 }
 
 export default function Home() {
@@ -73,11 +74,20 @@ export default function Home() {
                             <IoIosSettings size={32} />
                         </div>
                     </section>
-                    <div className="flex flex-wrap justify-between sm:w-3/5 w-full mt-6">
-                        {vacancies.map((item) => (
-                            <Vacancy key={item.id} vacancy={item}/>
-                        ))}
-                    </div>
+                    <section className='flex sm:w-3/5 w-full'>
+                        <div className="flex flex-wrap justify-between sm:w-3/5 w-full mt-6">
+                            {vacancies.map((item) => {
+                                if (item.type === 'CAR')
+                                    return <Vacancy key={item.id} vacancy={item} />
+                            })}
+                        </div>
+                        <div className="flex flex-wrap justify-end sm:w-2/5 w-full mt-6">
+                            {vacancies.map((item) => {
+                                if (item.type === 'MOTOCYCLE')
+                                    return <Vacancy key={item.id} vacancy={item} />
+                            })}
+                        </div>
+                    </section>
                 </main>
             </>
             <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />
