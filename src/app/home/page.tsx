@@ -13,6 +13,7 @@ import UserConfigModal from '@/components/user-config-modal';
 import api from '@/api/api-connections';
 import { errorToast } from '@/utils/toasts';
 import Vacancy from '@/components/vacancy';
+import Main from '@/components/main';
 
 type Vacancie = {
     id: string,
@@ -48,23 +49,8 @@ export default function Home() {
     return (
         <PrivateRoute>
             <>
-                <Header>
-                    <section className='flex justify-between md:w-3/5 w-full'>
-                        <h1 className="flex justify-center items-center cursor-default text-3xl font-black text-yellow">
-                            <FaCar />
-                            Parking
-                        </h1>
-                        <div className="flex flex-row">
-                            <HeaderOption onClick={() => setShowLogout(true)}>
-                                <section className='flex justify-between items-center'>
-                                    <FaPowerOff />
-                                    <h1 className='flex ml-2'>sair</h1>
-                                </section>
-                            </HeaderOption>
-                        </div>
-                    </section>
-                </Header>
-                <main className="flex relative min-h-screen w-full h-full flex-col items-center bg-white">
+                <Header showLogout={setShowLogout} />
+                <Main>
                     <section className='flex justify-end items-center sm:w-3/5 w-full pt-4 pb-2 sm:px-0 px-2 border border-b-2 border-t-0 border-x-0 border-gray-clear'>
                         <h1 className='text-xl text-gray-clear font-black mr-4'>
                             Olá, {userName}
@@ -88,7 +74,7 @@ export default function Home() {
                             })}
                         </div>
                     </section>
-                </main>
+                </Main>
             </>
             <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />
             <UserConfigModal isVisible={showUserConfig} onClick={() => setShowUserConfig(false)} />

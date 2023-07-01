@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation"
 import { AiFillCar } from "react-icons/ai"
 import { FaMotorcycle } from "react-icons/fa"
 
@@ -12,11 +13,12 @@ type Props = {
 
 export default function Vacancy({ vacancy }: Props) {
     const { id, localization, occupied, type } = vacancy
+    const router = useRouter()
     return (
-        <section key={id} className={`flex font-principal flex-col items-center justify-center w-36  h-36 hover:opacity-80 transition duration-300
+        <section key={id} onClick={() => {router.push('new-schedule')}} className={`flex font-principal flex-col items-center justify-center w-36  h-36 hover:opacity-80 transition duration-300
             cursor-pointer m-2 text-white rounded-lg
             ${occupied ? 'bg-red-600' : 'bg-green-500'}`}>
-            {type === 'CAR' ? <AiFillCar size={52} />:<FaMotorcycle size={52} />}
+            {type === 'CAR' ? <AiFillCar size={52} /> : <FaMotorcycle size={52} />}
             <h1 className="flex text-4xl">
                 {localization}
             </h1>
