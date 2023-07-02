@@ -58,12 +58,22 @@ async function listVacancies() {
     return await axios.get(`${API_URL}/vacancy`)
 }
 
+async function getCustomer(rg: string, token: string) {
+    return await axios.get(`${API_URL}/customer/${rg}`,
+        {
+            headers: {
+                authorization: token
+            }
+        })
+}
+
 const api = {
     signup,
     login,
     validateToken,
     getUserInfo,
     updateUser,
-    listVacancies
+    listVacancies,
+    getCustomer
 }
 export default api

@@ -6,11 +6,49 @@ import PrivateRoute from "@/components/private-route";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../contexts/user";
 import { useRouter } from "next/navigation";
+import { errorToast } from "@/utils/toasts";
+import api from "@/api/api-connections";
+import NewCustomerModal from "@/components/new-customer-modal";
+
+type FormData = {
+    rg: number | undefined,
+    name: string,
+    vehiclePlate: string
+}
 
 export default function NewSchedule() {
+    const token: any = localStorage.getItem('token')
     const router = useRouter()
     const { userName, vacancy } = useGlobalContext()
     const [showLogout, setShowLogout] = useState(false)
+    const [showCustomerModal, setShowCustomerModal] = useState(false)
+
+    const [formData, setFormData] = useState<FormData>({
+        rg: undefined,
+        name: '',
+        vehiclePlate: ''
+    })
+
+    function handleChange({ target }: any) {
+        setFormData({ ...formData, [target.name]: target.value })
+    }
+
+    async function getCustomer(){
+        try {
+            console.log(token)
+            const rg = formData.rg!.toString()
+            const customer = await api.getCustomer(rg, token)
+            //console.log(customer.data)
+        } catch (error: any) {
+            setShowCustomerModal(true)
+            const errorMessage = (
+                (error.response.data.message.message)
+                    ? error.response.data.message.message[0]
+                    : error.response.data.message
+            )
+            errorToast(errorMessage)
+        }
+    }
 
     useEffect(() => {
         if (!vacancy)
@@ -31,7 +69,7 @@ export default function NewSchedule() {
                         <div className="flex flex-col w-2/5">
                             <section className='flex justify-start items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-6 border border-b-1 border-t-0 border-x-0 border-gray-clear'>
                                 <h1 className='text-2xl text-yellow font-black mr-4'>
-                                    Dados da vaga
+                                    Infomeções da vaga
                                 </h1>
                             </section>
                             <section className='flex flex-col justify-start items-start sm:w-3/5 w-full pt-4 pb-2 sm:px-0 px-2 mt-2'>
@@ -46,22 +84,36 @@ export default function NewSchedule() {
                                 </h1>
                             </section>
                         </div>
-                        <div className="flex flex-col w-3/5">
+                        <div className="flex flex-col  items-center w-3/5">
                             <section className='flex justify-center items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-6 border border-b-1 border-t-0 border-x-0 border-gray-clear'>
                                 <h1 className='text-2xl text-yellow font-black mr-4'>
                                     Informações do cliente
                                 </h1>
                             </section>
-                            <section className='flex flex-col justify-center items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-2'>
+                            <section className='flex justify-center items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-2'>
                                 <h1 className='text-xl text-gray-clear font-black mr-4'>
                                     <span className="text-purple-500">RG: </span>
                                 </h1>
-                                <input className='flex bg-slate-200' type="number" />
+                                <input className='flex bg-slate-200 focus:outline-none p-2 rounded-lg'
+                                    type="number"
+                                    placeholder="RG"
+                                    onChange={(e: any) => handleChange(e)}
+                                    name="rg"
+                                    value={formData.rg}
+                                    maxLength={9}
+                                    required
+                                />
                             </section>
+                            {formData.rg ?
+                                <button className="flex w-max p-2 mt-2 text-lg rounded-lg bg-yellow text-white hover:opacity-70 transition duration-300"
+                                onClick={() => getCustomer()}>
+                                    continuar
+                                </button> : <></>}
                         </div>
                     </div>
                 </Main>
             </>
+            <NewCustomerModal isVisible={showCustomerModal} onClick={() => setShowCustomerModal(false)}/>
             <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />
         </PrivateRoute>
     )
