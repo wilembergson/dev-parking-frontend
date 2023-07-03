@@ -6,7 +6,7 @@ import PrivateRoute from "@/components/private-route";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../contexts/user";
 import { useRouter } from "next/navigation";
-import { errorToast } from "@/utils/toasts";
+import { errorToast, infoToast } from "@/utils/toasts";
 import api from "@/api/api-connections";
 import NewCustomerModal from "@/components/new-customer-modal";
 
@@ -33,7 +33,7 @@ export default function NewSchedule() {
         setFormData({ ...formData, [target.name]: target.value })
     }
 
-    async function getCustomer(){
+    async function getCustomer() {
         try {
             console.log(token)
             const rg = formData.rg!.toString()
@@ -46,7 +46,7 @@ export default function NewSchedule() {
                     ? error.response.data.message.message[0]
                     : error.response.data.message
             )
-            errorToast(errorMessage)
+            infoToast(errorMessage)
         }
     }
 
@@ -104,16 +104,16 @@ export default function NewSchedule() {
                                     required
                                 />
                             </section>
-                            {formData.rg ?
+                            {formData.rg && formData.rg.toString().length === 9 ?
                                 <button className="flex w-max p-2 mt-2 text-lg rounded-lg bg-yellow text-white hover:opacity-70 transition duration-300"
-                                onClick={() => getCustomer()}>
+                                    onClick={() => getCustomer()}>
                                     continuar
                                 </button> : <></>}
                         </div>
                     </div>
                 </Main>
             </>
-            <NewCustomerModal isVisible={showCustomerModal} onClick={() => setShowCustomerModal(false)}/>
+            <NewCustomerModal isVisible={showCustomerModal} rg={formData.rg!} onClick={() => setShowCustomerModal(false)} />
             <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />
         </PrivateRoute>
     )

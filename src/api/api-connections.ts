@@ -1,5 +1,6 @@
 import axios from "axios"
 import API_URL from "./api-url"
+import { data } from "autoprefixer"
 
 export type Signup = {
     name: string
@@ -16,6 +17,11 @@ export type Login = {
 export type UpdateUser = {
     email?: string
     password?: string
+}
+
+export type SaveCustomerData = {
+    name: string
+    rg: string
 }
 
 async function signup(data: Signup) {
@@ -67,6 +73,16 @@ async function getCustomer(rg: string, token: string) {
         })
 }
 
+async function saveCustomer(data: SaveCustomerData, token: string) {
+    return await axios.post(`${API_URL}/customer`,
+        data,
+        {
+            headers: {
+                authorization: token
+            }
+        })
+}
+
 const api = {
     signup,
     login,
@@ -74,6 +90,7 @@ const api = {
     getUserInfo,
     updateUser,
     listVacancies,
-    getCustomer
+    getCustomer,
+    saveCustomer
 }
 export default api

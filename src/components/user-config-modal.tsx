@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Loading from "./loading";
 import { useGlobalContext } from "@/app/contexts/user";
 import api from "@/api/api-connections";
-import { errorToast, updateToast } from "@/utils/toasts";
+import { errorToast, infoToast } from "@/utils/toasts";
 import { BsCheckAll } from 'react-icons/bs'
 import { TfiEmail } from "react-icons/tfi";
 import { AiFillLock } from "react-icons/ai";
