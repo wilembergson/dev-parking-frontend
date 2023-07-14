@@ -12,20 +12,27 @@ import NewCustomerModal from "@/components/new-customer-modal";
 
 type FormData = {
     rg: number | undefined,
+    vehiclePlate: string,
+    pricePerHour: string
+}
+
+type Customer = {
+    id: string,
     name: string,
-    vehiclePlate: string
+    rg: number
 }
 
 export default function NewSchedule() {
     const token: any = localStorage.getItem('token')
     const router = useRouter()
     const { userName, vacancy } = useGlobalContext()
+    const [customer, setCustomer] = useState<Customer | undefined>(undefined)
     const [showLogout, setShowLogout] = useState(false)
     const [showCustomerModal, setShowCustomerModal] = useState(false)
 
     const [formData, setFormData] = useState<FormData>({
         rg: undefined,
-        name: '',
+        pricePerHour: '',
         vehiclePlate: ''
     })
 
@@ -35,10 +42,9 @@ export default function NewSchedule() {
 
     async function getCustomer() {
         try {
-            console.log(token)
             const rg = formData.rg!.toString()
             const customer = await api.getCustomer(rg, token)
-            //console.log(customer.data)
+            setCustomer(customer.data)
         } catch (error: any) {
             setShowCustomerModal(true)
             const errorMessage = (
@@ -109,6 +115,36 @@ export default function NewSchedule() {
                                     onClick={() => getCustomer()}>
                                     continuar
                                 </button> : <></>}
+                            {(customer !== undefined && customer.rg === formData.rg) ?
+                                <div className="flex flex-col items-start  mt-5 w-full">
+                                    <section className='flex flex-col justify-start items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-2'>
+                                        <h1 className='flex text-xl text-gray-clear font-black mr-4'>
+                                            <span className="text-purple-500">Placa</span>
+                                        </h1>
+                                        <input className='flex bg-slate-200 focus:outline-none p-2 rounded-lg'
+                                            type="text"
+                                            placeholder="Placa"
+                                            onChange={(e: any) => handleChange(e)}
+                                            name="vehiclePlate"
+                                            value={formData.vehiclePlate}
+                                            required
+                                        />
+                                    </section>
+                                    <section className='flex flex-col justify-start items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-2'>
+                                        <h1 className='text-xl text-gray-clear font-black mr-4'>
+                                            <span className="text-purple-500">Preço por hora</span>
+                                        </h1>
+                                        <input className='flex bg-slate-200 focus:outline-none p-2 rounded-lg'
+                                            type="number"
+                                            placeholder="Preço"
+                                            onChange={(e: any) => handleChange(e)}
+                                            name="pricePerHour"
+                                            value={formData.pricePerHour}
+                                            required
+                                        />
+                                    </section>
+                                </div> 
+                            : <></>}
                         </div>
                     </div>
                 </Main>

@@ -81,7 +81,6 @@ export default function NewCustomerModal({ isVisible, rg, onClick }: Props) {
                                     required
                                 />
                             </section>
-
                         </form>
                         <section className="flex justify-around w-full">
                             <button className="flex items-center font-principal text-2xl my-6 text-white  bg-green-500 px-4 py-2 rounded-lg hover:opacity-80 transition duration-500"
