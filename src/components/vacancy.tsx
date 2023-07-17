@@ -21,7 +21,11 @@ export default function Vacancy({ vacancy, setLoading }: Props) {
     function loadScheduleForm() {
         setLoading(true)
         setVacancy(vacancy)
-        router.push('/new-schedule')
+        if(occupied){
+            router.push('/occupied-schedule')
+        }else{
+            router.push('/new-schedule')
+        }
     }
 
     return (

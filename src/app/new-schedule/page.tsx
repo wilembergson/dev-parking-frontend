@@ -10,6 +10,7 @@ import { errorToast, infoToast } from "@/utils/toasts";
 import api, { SaveScheduleData } from "@/api/api-connections";
 import NewCustomerModal from "@/components/new-customer-modal";
 import { BsCheckAll } from "react-icons/bs";
+import PageTitle from "@/components/page-title";
 
 type FormData = {
     rg: number | undefined,
@@ -28,7 +29,7 @@ type Customer = {
 export default function NewSchedule() {
     const token: any = localStorage.getItem('token')
     const router = useRouter()
-    const { userName, vacancy } = useGlobalContext()
+    const { vacancy } = useGlobalContext()
     const [customer, setCustomer] = useState<Customer | undefined>(undefined)
     const [showLogout, setShowLogout] = useState(false)
     const [showCustomerModal, setShowCustomerModal] = useState(false)
@@ -90,11 +91,7 @@ export default function NewSchedule() {
             <>
                 <Header showLogout={setShowLogout} />
                 <Main>
-                    <section className='flex justify-center font-principal items-center sm:w-3/5 w-full pt-4 pb-2 sm:px-0 px-2 border border-b-0 border-t-0 border-x-0 border-gray-clear'>
-                        <h1 className='text-5xl text-gray-clear font-black mr-4 mt-4'>
-                            Nova reserva
-                        </h1>
-                    </section>
+                    <PageTitle>Nova reserva</PageTitle>
                     <div className=" flex font-principal sm:w-3/5 w-full mt-4">
                         <div className="flex flex-col w-2/5">
                             <section className='flex justify-start items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-6 border border-b-1 border-t-0 border-x-0 border-gray-clear'>

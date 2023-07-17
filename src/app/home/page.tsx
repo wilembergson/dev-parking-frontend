@@ -7,7 +7,6 @@ import HeaderOption from "@/components/header-option";
 import Header from "@/components/Header";
 import { useEffect, useState } from "react";
 import LogoutModal from "@/components/logout-modal";
-import { FaCar, FaPowerOff } from 'react-icons/fa';
 import { IoIosSettings } from 'react-icons/io'
 import UserConfigModal from '@/components/user-config-modal';
 import api from '@/api/api-connections';
