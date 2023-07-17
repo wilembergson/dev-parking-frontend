@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { errorToast, infoToast } from "@/utils/toasts";
 import api, { SaveScheduleData } from "@/api/api-connections";
 import NewCustomerModal from "@/components/new-customer-modal";
+import { BsCheckAll } from "react-icons/bs";
 
 type FormData = {
     rg: number | undefined,
@@ -70,13 +71,12 @@ export default function NewSchedule() {
             await api.saveSchedule(scheduleData, token)
             router.push('/home')
         } catch (error: any) {
-            setShowCustomerModal(true)
             const errorMessage = (
                 (error.response.data.message.message)
                     ? error.response.data.message.message[0]
                     : error.response.data.message
             )
-            infoToast(errorMessage)
+            errorToast(errorMessage)
         }
     }
 
@@ -140,7 +140,7 @@ export default function NewSchedule() {
                                     continuar
                                 </button> : <></>}
                             {(customer !== undefined && customer.rg === formData.rg) ?
-                                <div className="flex flex-col items-start  mt-5 w-full">
+                                <div className="flex flex-col items-center  mt-5 w-full">
                                     <section className='flex flex-col justify-start items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-2'>
                                         <h1 className='flex text-xl text-gray-clear font-black mr-4'>
                                             <span className="text-purple-500">Placa</span>
@@ -167,7 +167,10 @@ export default function NewSchedule() {
                                             required
                                         />
                                     </section>
-                                    <button onClick={() => saveSchedule()}>Confirmar</button>
+                                    <button className="flex items-center font-principal text-2xl my-6 text-white  bg-green-500 px-4 py-2 rounded-lg hover:opacity-70 transition duration-500"
+                                        onClick={() => saveSchedule()}>
+                                        <BsCheckAll size={32} />Salvar
+                                    </button>
                                 </div>
                                 : <></>}
                         </div>
