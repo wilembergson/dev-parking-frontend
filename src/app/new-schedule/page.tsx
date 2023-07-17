@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from "../contexts/user";
 import { useRouter } from "next/navigation";
 import { errorToast, infoToast } from "@/utils/toasts";
-import api from "@/api/api-connections";
+import api, { SaveScheduleData } from "@/api/api-connections";
 import NewCustomerModal from "@/components/new-customer-modal";
 
 type FormData = {
@@ -17,7 +17,9 @@ type FormData = {
 }
 
 type Customer = {
-    id: string,
+    id: {
+        value: string
+    },
     name: string,
     rg: number
 }
@@ -45,6 +47,28 @@ export default function NewSchedule() {
             const rg = formData.rg!.toString()
             const customer = await api.getCustomer(rg, token)
             setCustomer(customer.data)
+        } catch (error: any) {
+            setShowCustomerModal(true)
+            const errorMessage = (
+                (error.response.data.message.message)
+                    ? error.response.data.message.message[0]
+                    : error.response.data.message
+            )
+            infoToast(errorMessage)
+        }
+    }
+
+    async function saveSchedule() {
+        console.log(customer?.id!.value!)
+        try {
+            const scheduleData: SaveScheduleData = {
+                vehiclePlate: formData.vehiclePlate,
+                pricePerHour: parseFloat(formData.pricePerHour),
+                customerId: customer?.id!.value!,
+                vacancyId: vacancy?.id!
+            }
+            await api.saveSchedule(scheduleData, token)
+            router.push('/home')
         } catch (error: any) {
             setShowCustomerModal(true)
             const errorMessage = (
@@ -143,8 +167,9 @@ export default function NewSchedule() {
                                             required
                                         />
                                     </section>
-                                </div> 
-                            : <></>}
+                                    <button onClick={() => saveSchedule()}>Confirmar</button>
+                                </div>
+                                : <></>}
                         </div>
                     </div>
                 </Main>

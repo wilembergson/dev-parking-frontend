@@ -24,6 +24,13 @@ export type SaveCustomerData = {
     rg: string
 }
 
+export type SaveScheduleData = {
+    vehiclePlate: string
+    pricePerHour: number
+    customerId: string
+    vacancyId: string
+}
+
 async function signup(data: Signup) {
     const response = await axios.post(`${API_URL}/auth/signup`, data)
     return response
@@ -83,6 +90,16 @@ async function saveCustomer(data: SaveCustomerData, token: string) {
         })
 }
 
+async function saveSchedule(data: SaveScheduleData, token: string) {
+    return await axios.post(`${API_URL}/schedules`,
+        data,
+        {
+            headers: {
+                authorization: token
+            }
+        })
+}
+
 const api = {
     signup,
     login,
@@ -91,6 +108,7 @@ const api = {
     updateUser,
     listVacancies,
     getCustomer,
-    saveCustomer
+    saveCustomer,
+    saveSchedule
 }
 export default api
