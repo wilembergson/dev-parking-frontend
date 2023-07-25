@@ -84,7 +84,7 @@ export default function NewSchedule() {
     useEffect(() => {
         if (!vacancy)
             router.push('/home')
-    })
+    }, [])
 
     return (
         <PrivateRoute>

@@ -44,7 +44,7 @@ export default function Home() {
     useEffect(() => {
         Aos.init({ duration: 500 })
         getVacancies()
-    })
+    }, [])
 
     return (
         <PrivateRoute>

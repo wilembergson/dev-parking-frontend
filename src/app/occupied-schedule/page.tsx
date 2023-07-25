@@ -42,8 +42,13 @@ export default function OccupiedSchedule() {
                 <Header showLogout={setShowLogout} />
                 <Main>
                     <PageTitle>Dados da reserva</PageTitle>
-                    <h1>Schedule ID: {schedule?.id}</h1>
-                    <h1>Price: {schedule?.pricePerHour}</h1>
+                    <h1>Entrada: {schedule?.checkIn}</h1>
+                    <h1>Preço por hora: R${schedule?.pricePerHour}</h1>
+                    <h1>Total: R${schedule?.priceTotal}</h1>
+                    <h1>Cliente: {schedule?.customer.name}</h1>
+                    <h1>Placa: {schedule?.vehiclePlate}</h1>
+                    <h1>Vaga: {schedule?.vacancy.localization}</h1>
+                    <h1>Atendido(a) por: {schedule?.employeeUser.name}</h1>
                 </Main>
             </>
         </PrivateRoute>
