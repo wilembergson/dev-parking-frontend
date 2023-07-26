@@ -1,7 +1,7 @@
 import { useGlobalContext } from "@/app/contexts/user"
+import { FaMotorcycle } from "react-icons/fa"
 import { useRouter } from "next/navigation"
 import { AiFillCar } from "react-icons/ai"
-import { FaMotorcycle } from "react-icons/fa"
 
 type Props = {
     setLoading: any,
