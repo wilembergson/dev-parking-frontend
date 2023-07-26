@@ -109,6 +109,19 @@ async function getScheduleByVacancy(vacancyId: string, token: string) {
         })
 }
 
+async function finishSchedule(id: string, token: string) {
+    console.log(id)
+    return await axios.put(`${API_URL}/schedules/${id}`,
+        {
+            data: { id }
+        },
+        {
+            headers: {
+                authorization: token
+            }
+        })
+}
+
 const api = {
     signup,
     login,
@@ -119,6 +132,7 @@ const api = {
     getCustomer,
     saveCustomer,
     saveSchedule,
-    getScheduleByVacancy
+    getScheduleByVacancy,
+    finishSchedule
 }
 export default api

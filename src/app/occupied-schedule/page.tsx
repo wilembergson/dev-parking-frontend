@@ -19,11 +19,11 @@ export default function OccupiedSchedule() {
     const [schedule, setSchedule] = useState<any>()
     const [checkIn, setCheckIn] = useState('')
 
-    async function formatCheckIn(date: string){
+    async function formatCheckIn(date: string) {
         const checkIn = new Date(date)
-        const day = (checkIn.getDate() < 10) ? `0${checkIn.getDate()}`: `${checkIn.getDate()}`
-        const month = (checkIn.getMonth()+1 < 10) ? `0${checkIn.getMonth()+1}`: `${checkIn.getMonth()+1}`
-        const hour = (checkIn.getHours()+3 < 30) ? `0${checkIn.getHours()+3}`: `${checkIn.getHours()+3}`
+        const day = (checkIn.getDate() < 10) ? `0${checkIn.getDate()}` : `${checkIn.getDate()}`
+        const month = (checkIn.getMonth() + 1 < 10) ? `0${checkIn.getMonth() + 1}` : `${checkIn.getMonth() + 1}`
+        const hour = (checkIn.getHours() + 3 < 30) ? `0${checkIn.getHours() + 3}` : `${checkIn.getHours() + 3}`
         const minutes = checkIn.getUTCMinutes()
         setCheckIn(`${day}/${month}/${checkIn.getFullYear()} às ${hour}:${minutes}`)
     }
@@ -34,6 +34,21 @@ export default function OccupiedSchedule() {
             const res = await api.getScheduleByVacancy(vacancy?.id!, token)
             setSchedule(res.data)
             formatCheckIn(res.data.checkIn)
+        } catch (error: any) {
+            const errorMessage = (
+                (error.response.data.message.message)
+                    ? error.response.data.message.message[0]
+                    : error.response.data.message
+            )
+            errorToast(errorMessage)
+        }
+    }
+
+    async function finishSchedule() {
+        try {
+            const token: any = localStorage.getItem('token')
+            await api.finishSchedule(schedule?.id!, token)
+            router.push('/home')
         } catch (error: any) {
             const errorMessage = (
                 (error.response.data.message.message)
@@ -63,9 +78,6 @@ export default function OccupiedSchedule() {
                     <div className="flex m-8">
                         <section className="flex flex-col shadow-md m-4 p-4">
                             <DataDescription>
-                                <Span>Entrada:</Span> {schedule?.checkIn}
-                            </DataDescription>
-                            <DataDescription>
                                 <Span>Entrada:</Span> {checkIn}
                             </DataDescription>
                             <DataDescription>
@@ -90,7 +102,10 @@ export default function OccupiedSchedule() {
                             </DataDescription>
                         </section>
                     </div>
-                    <FormButtom>Finalizar</FormButtom>
+                    <button className="flex bg-yellow hover:bg-yellow2 duration-500 text-white text-4xl px-5 py-3 rounded-xl mt-16"
+                        onClick={() => finishSchedule()}>
+                        Finalizar
+                    </button>
                 </Main>
             </>
         </PrivateRoute>
