@@ -21,17 +21,60 @@ type Vacancie = {
     type: string
 }
 
+type VacanciesNumbers = {
+    total: number,
+    free: number,
+    occupied: number,
+    cars: number,
+    motocycles: number
+}
+
 export default function Home() {
     const { userName } = useGlobalContext()
     const [loading, setLoading] = useState(false)
     const [showLogout, setShowLogout] = useState(false)
     const [showUserConfig, setShowUserConfig] = useState(false)
     const [vacancies, setVacancies] = useState<Vacancie[]>([])
+    const [vacanciesNumbers, setVacanciesNumbers] = useState<VacanciesNumbers>({
+        total: 0,
+        free: 0,
+        occupied: 0,
+        cars: 0,
+        motocycles: 0
+    })
+
+    function vacanciesNumbersData(list: Vacancie[]) {
+        let free = 0
+        let occupied = 0
+        let cars = 0
+        let motocycles = 0
+        list.forEach(item => {
+            if (item.occupied) {
+                if(item.type === 'CAR'){
+                    cars++
+                }
+                else{
+                    motocycles++
+                }
+                occupied++
+            } else {
+                free++
+            }
+        })
+        setVacanciesNumbers({
+            total: list.length,
+            free,
+            occupied,
+            cars,
+            motocycles
+        })
+    }
 
     async function getVacancies() {
         try {
             const res = await api.listVacancies()
             setVacancies(res.data)
+            vacanciesNumbersData(res.data)
         } catch (error: any) {
             const errorMessage = (
                 (error.response.data.message.message)
@@ -61,14 +104,25 @@ export default function Home() {
                                 <IoIosSettings size={32} />
                             </div>
                         </section>
+                        <div className='flex w-3/5 justify-between mt-6'>
+                            <section className='flex flex-col shadow-md p-5 w-3/5'>
+                                <div>Total: {vacanciesNumbers.total}</div>
+                                <div>Livres: {vacanciesNumbers.free}</div>
+                                <div>Ocupadas: {vacanciesNumbers.occupied}</div>
+                            </section>
+                            <section className='flex flex-col justify-center p-5 shadow-md w-1/5'>
+                                <div>Carros: {vacanciesNumbers.cars}</div>
+                                <div>Motos: {vacanciesNumbers.motocycles}</div>
+                            </section>
+                        </div>
                         <section className='flex sm:w-3/5 w-full'>
-                            <div className="flex flex-wrap justify-between sm:w-3/5 w-full mt-6">
+                            <div className="flex flex-wrap justify-between sm:w-3/5 w-full mt-6 shadow-md rounded-lg">
                                 {vacancies.map((item) => {
                                     if (item.type === 'CAR')
                                         return <Vacancy key={item.id} vacancy={item} setLoading={setLoading} />
                                 })}
                             </div>
-                            <div className="flex flex-wrap justify-end sm:w-2/5 w-full mt-6">
+                            <div className="flex flex-wrap justify-end sm:w-2/5 w-full mt-6 shadow-md rounded-lg">
                                 {vacancies.map((item) => {
                                     if (item.type === 'MOTOCYCLE')
                                         return <Vacancy key={item.id} vacancy={item} setLoading={setLoading} />

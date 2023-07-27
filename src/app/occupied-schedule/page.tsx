@@ -6,11 +6,10 @@ import PageTitle from "@/components/page-title";
 import PrivateRoute from "@/components/private-route";
 import { errorToast } from "@/utils/toasts";
 import { useEffect, useState } from "react";
+import DataDescription from "@/components/data-description";
 import { useGlobalContext } from "../contexts/user";
 import { useRouter } from "next/navigation";
-import DataDescription from "@/components/data-description";
 import Span from "@/components/span";
-import FormButtom from "@/components/form-butom";
 
 export default function OccupiedSchedule() {
     const router = useRouter()
@@ -23,7 +22,7 @@ export default function OccupiedSchedule() {
         const checkIn = new Date(date)
         const day = (checkIn.getDate() < 10) ? `0${checkIn.getDate()}` : `${checkIn.getDate()}`
         const month = (checkIn.getMonth() + 1 < 10) ? `0${checkIn.getMonth() + 1}` : `${checkIn.getMonth() + 1}`
-        const hour = (checkIn.getHours() + 3 < 30) ? `0${checkIn.getHours() + 3}` : `${checkIn.getHours() + 3}`
+        const hour = (checkIn.getHours() < 10) ? `0${checkIn.getHours()}` : `${checkIn.getHours()}`
         const minutes = checkIn.getUTCMinutes()
         setCheckIn(`${day}/${month}/${checkIn.getFullYear()} às ${hour}:${minutes}`)
     }
