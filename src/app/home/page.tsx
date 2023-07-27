@@ -50,10 +50,10 @@ export default function Home() {
         let motocycles = 0
         list.forEach(item => {
             if (item.occupied) {
-                if(item.type === 'CAR'){
+                if (item.type === 'CAR') {
                     cars++
                 }
-                else{
+                else {
                     motocycles++
                 }
                 occupied++
@@ -104,11 +104,17 @@ export default function Home() {
                                 <IoIosSettings size={32} />
                             </div>
                         </section>
-                        <div className='flex w-3/5 justify-between mt-6'>
-                            <section className='flex flex-col shadow-md p-5 w-3/5'>
-                                <div>Total: {vacanciesNumbers.total}</div>
-                                <div>Livres: {vacanciesNumbers.free}</div>
-                                <div>Ocupadas: {vacanciesNumbers.occupied}</div>
+                        <div className='flex font-principal text-xl text-gray-clear font-black w-3/5 justify-between mt-6'>
+                            <section className='flex flex-col shadow-md p-5 w-3/5 '>
+                                <div className='flex text-4xl my-2'>
+                                    Vagas: {vacanciesNumbers.total}
+                                </div>
+                                <div className='flex text-green-500'>
+                                    Livres: {vacanciesNumbers.free}
+                                </div>
+                                <div className='flex text-red-600'>
+                                    Ocupadas: {vacanciesNumbers.occupied}
+                                </div>
                             </section>
                             <section className='flex flex-col justify-center p-5 shadow-md w-1/5'>
                                 <div>Carros: {vacanciesNumbers.cars}</div>
