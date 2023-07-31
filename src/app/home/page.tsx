@@ -14,6 +14,7 @@ import Vacancy from '@/components/vacancy';
 import Main from '@/components/main';
 import Loading from '@/components/loading';
 import CircleChart from '@/components/circle-chart';
+import TypeVehicleChats from '@/components/type-vehicle-charts';
 
 type Vacancie = {
     id: string,
@@ -105,7 +106,7 @@ export default function Home() {
                                 <IoIosSettings size={32} />
                             </div>
                         </section>
-                        <div className='flex font-principal text-xl text-purple-500 font-black w-3/5 justify-between mt-6'>
+                        <div className='flex font-principal text-xl text-gray-clear font-black w-3/5 justify-between mt-6'>
                             <section className='flex justify-between shadow-md p-5 w-2/5 bg-slate-100'>
                                 <section>
                                     <div className='flex text-4xl my-2'>
@@ -120,9 +121,19 @@ export default function Home() {
                                 </section>
                                 <CircleChart free={vacanciesNumbers.free} occupied={vacanciesNumbers.occupied} />
                             </section>
-                            <section className='flex flex-col justify-center p-5 shadow-md w-1/5 bg-slate-100'>
-                                <div>Carros: {vacanciesNumbers.cars}</div>
-                                <div>Motos: {vacanciesNumbers.motocycles}</div>
+                            <section className='flex justify-between p-5 shadow-md w-2/5 bg-slate-100'>
+                                <section>
+                                    <div className='flex text-4xl my-2'>
+                                        Tipos
+                                    </div>
+                                    <div className='flex text-yellow'>
+                                        Carros: {vacanciesNumbers.cars}
+                                    </div>
+                                    <div className='flex text-purple-500'>
+                                        Motos: {vacanciesNumbers.motocycles}
+                                    </div>
+                                </section>
+                                <TypeVehicleChats cars={vacanciesNumbers.cars} motocycles={vacanciesNumbers.motocycles} />
                             </section>
                         </div>
                         <section className='flex sm:w-3/5 w-full mb-10'>
