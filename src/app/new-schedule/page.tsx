@@ -11,6 +11,7 @@ import api, { SaveScheduleData } from "@/api/api-connections";
 import NewCustomerModal from "@/components/new-customer-modal";
 import { BsCheckAll } from "react-icons/bs";
 import PageTitle from "@/components/page-title";
+import BackButton from "@/components/back-button";
 
 type FormData = {
     rg: number | undefined,
@@ -99,7 +100,7 @@ export default function NewSchedule() {
                                     Infomeções da vaga
                                 </h1>
                             </section>
-                            <section className='flex flex-col justify-start items-start sm:w-3/5 w-full pt-4 pb-2 sm:px-0 px-2 mt-2'>
+                            <section className='flex flex-col justify-start items-start sm:w-3/5 w-full pt-4 pb-2 sm:px-0 px-2 mt-2 mb-20'>
                                 <h1 className='text-xl text-gray-clear font-black mr-4'>
                                     <span className="text-purple-500">Localização:</span> {vacancy?.localization}
                                 </h1>
@@ -110,6 +111,7 @@ export default function NewSchedule() {
                                     <span className="text-purple-500">Status:</span> {vacancy?.occupied ? 'Ocupada' : 'Disponível'}
                                 </h1>
                             </section>
+                            <BackButton/>
                         </div>
                         <div className="flex flex-col  items-center w-3/5">
                             <section className='flex justify-center items-center w-full pt-4 pb-2 sm:px-0 px-2 mt-6 border border-b-1 border-t-0 border-x-0 border-gray-clear'>

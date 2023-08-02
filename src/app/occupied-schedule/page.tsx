@@ -10,6 +10,8 @@ import DataDescription from "@/components/data-description";
 import { useGlobalContext } from "../contexts/user";
 import { useRouter } from "next/navigation";
 import Span from "@/components/span";
+import { BsArrowLeft, BsArrowLeftCircle, BsFillArrowLeftCircleFill } from "react-icons/bs";
+import BackButton from "@/components/back-button";
 
 export default function OccupiedSchedule() {
     const router = useRouter()
@@ -101,6 +103,7 @@ export default function OccupiedSchedule() {
                             </DataDescription>
                         </section>
                     </div>
+                    <BackButton />
                     <button className="flex bg-yellow hover:bg-yellow2 duration-500 text-white text-4xl px-5 py-3 rounded-xl mt-16"
                         onClick={() => finishSchedule()}>
                         Finalizar
