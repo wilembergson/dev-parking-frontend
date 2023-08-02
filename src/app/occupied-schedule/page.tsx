@@ -10,8 +10,8 @@ import DataDescription from "@/components/data-description";
 import { useGlobalContext } from "../contexts/user";
 import { useRouter } from "next/navigation";
 import Span from "@/components/span";
-import { BsArrowLeft, BsArrowLeftCircle, BsFillArrowLeftCircleFill } from "react-icons/bs";
 import BackButton from "@/components/back-button";
+import FinishScheduleModal from "@/components/finish-schedule-modal";
 
 export default function OccupiedSchedule() {
     const router = useRouter()
@@ -19,6 +19,7 @@ export default function OccupiedSchedule() {
     const [showLogout, setShowLogout] = useState(false)
     const [schedule, setSchedule] = useState<any>()
     const [checkIn, setCheckIn] = useState('')
+    const [showModal, setShowModal] = useState(false)
 
     async function formatCheckIn(date: string) {
         const checkIn = new Date(date)
@@ -105,11 +106,12 @@ export default function OccupiedSchedule() {
                     </div>
                     <BackButton />
                     <button className="flex bg-yellow hover:bg-yellow2 duration-500 text-white text-4xl px-5 py-3 rounded-xl mt-16"
-                        onClick={() => finishSchedule()}>
+                        onClick={() => setShowModal(true)}>
                         Finalizar
                     </button>
                 </Main>
             </>
+            <FinishScheduleModal isVisible={showModal} scheduleId={schedule?.id!} onClick={() => setShowModal(false)}/>
         </PrivateRoute>
     )
 }

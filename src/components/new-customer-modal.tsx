@@ -1,14 +1,10 @@
 import Modal from "./modal";
-import { useEffect, useState } from "react";
 import Loading from "./loading";
-import { useGlobalContext } from "@/app/contexts/user";
+import { useState } from "react";
 import api from "@/api/api-connections";
-import { errorToast, infoToast } from "@/utils/toasts";
-import { BsCheckAll } from 'react-icons/bs'
-import { TfiEmail } from "react-icons/tfi";
-import { AiFillLock } from "react-icons/ai";
-import { RxUpdate } from 'react-icons/rx'
 import { GiCancel } from "react-icons/gi";
+import { BsCheckAll } from 'react-icons/bs'
+import { errorToast } from "@/utils/toasts";
 
 type Props = {
     isVisible: boolean
