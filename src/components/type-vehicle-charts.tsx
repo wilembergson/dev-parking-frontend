@@ -28,7 +28,7 @@ export default function TypeVehicleChats({ cars, motocycles }: Props) {
         ],
     };
     return (
-        <div className='flex w-44'>
+        <div className='flex w-28'>
             <Pie data={data} />
         </div>
     )

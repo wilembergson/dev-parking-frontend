@@ -28,7 +28,7 @@ export default function CircleChart({ free, occupied }: Props) {
         ],
     };
     return (
-        <div className='flex w-44'>
+        <div className='flex w-28'>
             <Doughnut data={data} />
         </div>
     )

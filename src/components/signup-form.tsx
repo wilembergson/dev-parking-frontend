@@ -40,7 +40,7 @@ export default function SignupForm({ setForm }: any) {
     }
 
     return (
-        <div className="flex relative flex-col bg-slate-100 xl:w-6/12 w-full  py-16 rounded-3xl items-center" data-aos="flip-left">
+        <div className="flex relative flex-col bg-slate-100 xl:w-6/12 w-full  py-10 rounded-3xl items-center" data-aos="flip-left">
             {(loading === false) ?
                 <>
                     <Title textColor="text-gray-clear-2" textSize="text-4xl" textBlack>

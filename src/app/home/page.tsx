@@ -109,7 +109,7 @@ export default function Home() {
                         <div className='flex font-principal text-xl text-gray-clear font-black w-3/5 justify-between mt-6'>
                             <section className='flex justify-between shadow-md p-5 w-2/5 bg-slate-100'>
                                 <section>
-                                    <div className='flex text-4xl my-2'>
+                                    <div className='flex text-3xl my-2'>
                                         Vagas: {vacanciesNumbers.total}
                                     </div>
                                     <div className='flex text-green-600'>

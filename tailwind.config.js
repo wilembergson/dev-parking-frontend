@@ -16,6 +16,9 @@ module.exports = {
         'gray': '#424242',
         'gray-clear': '#585858',
         'gray-clear-2': '#848484'
+      },
+      width: {
+        'vacancy-width': '110px'
       }
     },
   },
