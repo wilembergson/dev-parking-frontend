@@ -15,6 +15,7 @@ import Main from '@/components/main';
 import Loading from '@/components/loading';
 import CircleChart from '@/components/circle-chart';
 import TypeVehicleChats from '@/components/type-vehicle-charts';
+import { useRouter } from 'next/navigation';
 
 type Vacancie = {
     id: string,
@@ -32,6 +33,7 @@ type VacanciesNumbers = {
 }
 
 export default function Home() {
+    const router = useRouter()
     const { userName } = useGlobalContext()
     const [loading, setLoading] = useState(false)
     const [showLogout, setShowLogout] = useState(false)
@@ -86,6 +88,12 @@ export default function Home() {
             errorToast(errorMessage)
         }
     }
+    
+    async function goToHistoric(){
+        setLoading(true)
+        router.push('/schedule-historic')
+    }
+
     useEffect(() => {
         Aos.init({ duration: 500 })
         getVacancies()
@@ -135,6 +143,9 @@ export default function Home() {
                                 </section>
                                 <TypeVehicleChats cars={vacanciesNumbers.cars} motocycles={vacanciesNumbers.motocycles} />
                             </section>
+                            <button onClick={() => goToHistoric()}>
+                                Histórico
+                            </button>
                         </div>
                         <section className='flex sm:w-3/5 w-full mb-10'>
                             <div className="flex flex-wrap justify-between sm:w-3/5 w-full mt-6 shadow-md rounded-lg">

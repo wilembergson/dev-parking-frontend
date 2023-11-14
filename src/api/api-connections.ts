@@ -122,6 +122,18 @@ async function finishSchedule(id: string, token: string) {
         })
 }
 
+async function scheduleHistoric(token: string) {
+    return await axios.get(`${API_URL}/schedules`,
+       {    
+            data: {
+                finished: true
+            },
+            headers: {
+                authorization: token
+            }
+        })
+}
+
 const api = {
     signup,
     login,
@@ -133,6 +145,7 @@ const api = {
     saveCustomer,
     saveSchedule,
     getScheduleByVacancy,
-    finishSchedule
+    finishSchedule,
+    scheduleHistoric
 }
 export default api
