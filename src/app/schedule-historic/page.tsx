@@ -56,13 +56,18 @@ export default function ScheduleHistoric() {
                 <Header showLogout={setShowLogout} />
                 <Main>
                     <PageTitle>Histórico de reservas</PageTitle>
-                    <div className="flex flex-col m-8">
-                        {schedules?.map(item => <HistoricItem info={item}/>)}
-                    </div>
+                    {schedules?.length !== 0?
+                        <div className="flex flex-col m-8">
+                            {schedules?.map(item => <HistoricItem info={item} />)}
+                        </div>
+                        : <h1 className="flex font-principal text-gray-clear-2 font-black my-20 text-2xl">
+                            [ Histórico vazío ]
+                        </h1>
+                    }
                     <BackButton />
                 </Main>
             </>
-           {/* <FinishScheduleModal isVisible={showModal} scheduleId={schedule?.id!} onClick={() => setShowModal(false)} />*/}
+            {/* <FinishScheduleModal isVisible={showModal} scheduleId={schedule?.id!} onClick={() => setShowModal(false)} />*/}
         </PrivateRoute>
     )
 }

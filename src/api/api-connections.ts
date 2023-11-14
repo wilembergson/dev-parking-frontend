@@ -123,11 +123,8 @@ async function finishSchedule(id: string, token: string) {
 }
 
 async function scheduleHistoric(token: string) {
-    return await axios.get(`${API_URL}/schedules`,
-       {    
-            data: {
-                finished: true
-            },
+    return await axios.get(`${API_URL}/schedules/finished`,
+        {
             headers: {
                 authorization: token
             }

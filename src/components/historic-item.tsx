@@ -48,15 +48,11 @@ export default function HistoricItem({ info }: children) {
         return (`${day}/${month}/${checkIn.getFullYear()} às ${hour}:${minutes}`)
     }
     return (
-        <div>
-            {info.checkOut !== null ?
-                <section className="flex font-principal shadow-md m-2 cursor-pointer">
-                    <Item title="Checkout">{info.checkOut.toString()}</Item>
-                    <Item title="Placa">{info.vehiclePlate}</Item>
-                    <Item title="Cliente">{info.customer.name}</Item>
-                </section>
-                : <></>}
-        </div>
+        <section className="flex font-principal shadow-md m-2 cursor-pointer">
+            <Item title="Checkout">{info.checkOut.toString()}</Item>
+            <Item title="Placa">{info.vehiclePlate}</Item>
+            <Item title="Cliente">{info.customer.name}</Item>
+        </section>
     )
 }
 
