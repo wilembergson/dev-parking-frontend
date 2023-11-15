@@ -16,6 +16,7 @@ import Loading from '@/components/loading';
 import CircleChart from '@/components/circle-chart';
 import TypeVehicleChats from '@/components/type-vehicle-charts';
 import { useRouter } from 'next/navigation';
+import { MdHistory } from "react-icons/md";
 
 type Vacancie = {
     id: string,
@@ -88,8 +89,8 @@ export default function Home() {
             errorToast(errorMessage)
         }
     }
-    
-    async function goToHistoric(){
+
+    async function goToHistoric() {
         setLoading(true)
         router.push('/schedule-historic')
     }
@@ -143,7 +144,9 @@ export default function Home() {
                                 </section>
                                 <TypeVehicleChats cars={vacanciesNumbers.cars} motocycles={vacanciesNumbers.motocycles} />
                             </section>
-                            <button onClick={() => goToHistoric()}>
+                            <button className='flex flex-col items-center justify-center hover:opacity-80 transition duration-300'
+                                onClick={() => goToHistoric()}>
+                                <MdHistory size={36} />
                                 Histórico
                             </button>
                         </div>

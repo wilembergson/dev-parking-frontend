@@ -46,7 +46,7 @@ export default function SignupForm({ setForm }: any) {
                     <Title textColor="text-gray-clear-2" textSize="text-4xl" textBlack>
                         Novo usuário
                     </Title>
-                    <form onSubmit={handleSubmit} className="flex flex-col items-center w-full mt-10 font-principal">
+                    <form onSubmit={handleSubmit} className="flex flex-col items-center w-full mt-4 font-principal">
                         <Input
                             placehoder="nome"
                             type="text"
@@ -75,7 +75,7 @@ export default function SignupForm({ setForm }: any) {
                             name="password"
                             value={formData.password}
                         />
-                        <h3 onClick={() => setForm('login')} className="flex mt-10 text-gray-clear-2 font-black cursor-pointer hover:text-yellow duration-500">
+                        <h3 onClick={() => setForm('login')} className="flex mt-8 text-gray-clear-2 font-black cursor-pointer hover:text-yellow duration-500">
                             Fazer login
                         </h3>
                         <FormButtom>

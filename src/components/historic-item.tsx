@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
-import BackButton from "./back-button";
+'use client'
+import formatedDate from "@/utils/formated-date";
+import { ReactNode, useState, useEffect } from "react";
 
 type Vacancy = {
     id: string;
@@ -38,18 +39,20 @@ type children = {
 }
 
 export default function HistoricItem({ info }: children) {
+    const [checkIn, setCheckIn] = useState<string>('')
+    const [checkOut, setCheckOut] = useState<string>('')
 
-    async function formatCheckIn(date: Date) {
-        const checkIn = new Date(date)
-        const day = (checkIn.getDate() < 10) ? `0${checkIn.getDate()}` : `${checkIn.getDate()}`
-        const month = (checkIn.getMonth() + 1 < 10) ? `0${checkIn.getMonth() + 1}` : `${checkIn.getMonth() + 1}`
-        const hour = (checkIn.getHours() < 10) ? `0${checkIn.getHours()}` : `${checkIn.getHours()}`
-        const minutes = checkIn.getUTCMinutes()
-        return (`${day}/${month}/${checkIn.getFullYear()} às ${hour}:${minutes}`)
-    }
+    useEffect(() => {
+        const formatedCheckIn = formatedDate(info.checkIn)
+        const formatedCheckOut = formatedDate(info.checkOut)
+        setCheckIn(formatedCheckIn)
+        setCheckOut(formatedCheckOut)
+    }, [])
+
     return (
         <section className="flex font-principal shadow-md m-2 cursor-pointer">
-            <Item title="Checkout">{info.checkOut.toString()}</Item>
+            <Item title="CheckIn">{checkIn}</Item>
+            <Item title="Checkout">{checkOut}</Item>
             <Item title="Placa">{info.vehiclePlate}</Item>
             <Item title="Cliente">{info.customer.name}</Item>
         </section>
