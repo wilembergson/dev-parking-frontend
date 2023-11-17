@@ -21,7 +21,7 @@ type EmployeeUser = {
     rg: string;
     email: string;
 }
-export type informations = {
+export type Informations = {
     id: string;
     vehiclePlate: string;
     checkIn: Date;
@@ -34,11 +34,12 @@ export type informations = {
     employeeUser: EmployeeUser
 }
 
-type children = {
-    info: informations
+type Props = {
+    info: Informations,
+    details: React.Dispatch<React.SetStateAction<any>>
 }
 
-export default function HistoricItem({ info }: children) {
+export default function HistoricItem({ info, details }: Props) {
     const [checkIn, setCheckIn] = useState<string>('')
     const [checkOut, setCheckOut] = useState<string>('')
 
@@ -50,7 +51,7 @@ export default function HistoricItem({ info }: children) {
     }, [])
 
     return (
-        <section className="flex font-principal shadow-md m-2 cursor-pointer">
+        <section className="flex font-principal shadow-md m-2 cursor-pointer hover:text-purple-500 hover:shadow-purple-500 transition duration-300" onClick={() => details(info)}>
             <Item title="CheckIn">{checkIn}</Item>
             <Item title="Checkout">{checkOut}</Item>
             <Item title="Placa">{info.vehiclePlate}</Item>

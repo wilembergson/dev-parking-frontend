@@ -12,12 +12,13 @@ import { useRouter } from "next/navigation";
 import Span from "@/components/span";
 import BackButton from "@/components/back-button";
 import FinishScheduleModal from "@/components/finish-schedule-modal";
-import HistoricItem, { informations } from "@/components/historic-item";
+import HistoricItem, { Informations } from "@/components/historic-item";
+import ScheduleDatailsModal from "@/components/schedule-datails-modal";
 
 export default function ScheduleHistoric() {
     const router = useRouter()
     const [showLogout, setShowLogout] = useState(false)
-    const [schedules, setSchedules] = useState<informations[]>()
+    const [schedules, setSchedules] = useState<Informations[]>()
     const [checkIn, setCheckIn] = useState('')
     const [showModal, setShowModal] = useState(false)
 
@@ -35,7 +36,6 @@ export default function ScheduleHistoric() {
             const token: any = localStorage.getItem('token')
             const res = await api.scheduleHistoric(token)
             setSchedules(res.data)
-            //formatCheckIn(res.data.checkIn)
         } catch (error: any) {
             const errorMessage = (
                 (error.response.data.message.message)
@@ -44,6 +44,12 @@ export default function ScheduleHistoric() {
             )
             errorToast(errorMessage)
         }
+    }
+
+    const [details, setDatails] = useState<Informations | undefined>()
+    function showDetails(details:Informations){
+        setDatails(details)
+        setShowModal(true)
     }
 
     useEffect(() => {
@@ -58,7 +64,7 @@ export default function ScheduleHistoric() {
                     <PageTitle>Histórico de reservas</PageTitle>
                     {schedules?.length !== 0?
                         <div className="flex flex-col m-8">
-                            {schedules?.map(item => <HistoricItem info={item} />)}
+                            {schedules?.map(item => <HistoricItem info={item} details={showDetails} />)}
                         </div>
                         : <h1 className="flex font-principal text-gray-clear-2 font-black my-20 text-2xl">
                             [ Histórico vazío ]
@@ -67,7 +73,7 @@ export default function ScheduleHistoric() {
                     <BackButton />
                 </Main>
             </>
-            {/* <FinishScheduleModal isVisible={showModal} scheduleId={schedule?.id!} onClick={() => setShowModal(false)} />*/}
+         <ScheduleDatailsModal isVisible={showModal} schedule={details} onClick={() => setShowModal(false)} />
         </PrivateRoute>
     )
 }
