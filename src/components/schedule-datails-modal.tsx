@@ -41,14 +41,13 @@ export default function ScheduleDatailsModal({ schedule, isVisible, onClick }: P
                         <h1 className="font-principal font-black text-3xl flex-wrap w-full p-3 text-center bg-purple-500 text-white">
                             Detalhes da reserva
                         </h1>
-                        <section className="flex flex-wrap justify-around w-full p-2">
+                        <section className="flex justify-around items-start w-full p-2">
                             <Info title="Cliente">{schedule?.customer.name}</Info>
                             <Info title="RG">{schedule?.customer.rg}</Info>
                             <Info title="Placa">{schedule?.vehiclePlate}</Info>
                             <Info title="Vaga">{schedule?.vacancy.localization}</Info>
-                            <Info title="Tipo">
-                                {schedule?.vacancy.type}
-                            </Info>
+                            <Info title="Tipo">{schedule?.vacancy.type === "CAR" ? 'Carro' : 'Motocicleta'}</Info>
+                            <Info title="Atendido por">{schedule?.employeeUser.name}</Info>
                         </section>
                         <section className="flex flex-wrap justify-around w-full p-2">
                             <Info title="Checkin">{checkIn}</Info>
@@ -72,7 +71,7 @@ type InfoProps = {
 }
 function Info({ title, children }: InfoProps) {
     return (
-        <h1 className="flex flex-col m-4">
+        <h1 className="flex flex-wrap flex-col m-4">
             <strong>{title}</strong>{children}
         </h1>
     )

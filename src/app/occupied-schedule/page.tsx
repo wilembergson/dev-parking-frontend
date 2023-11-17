@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Span from "@/components/span";
 import BackButton from "@/components/back-button";
 import FinishScheduleModal from "@/components/finish-schedule-modal";
+import LogoutModal from "@/components/logout-modal";
 
 export default function OccupiedSchedule() {
     const router = useRouter()
@@ -112,6 +113,7 @@ export default function OccupiedSchedule() {
                 </Main>
             </>
             <FinishScheduleModal isVisible={showModal} scheduleId={schedule?.id!} onClick={() => setShowModal(false)}/>
+            <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />
         </PrivateRoute>
     )
 }

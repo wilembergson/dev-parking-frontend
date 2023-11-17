@@ -14,6 +14,7 @@ import BackButton from "@/components/back-button";
 import FinishScheduleModal from "@/components/finish-schedule-modal";
 import HistoricItem, { Informations } from "@/components/historic-item";
 import ScheduleDatailsModal from "@/components/schedule-datails-modal";
+import LogoutModal from "@/components/logout-modal";
 
 export default function ScheduleHistoric() {
     const router = useRouter()
@@ -74,6 +75,7 @@ export default function ScheduleHistoric() {
                 </Main>
             </>
          <ScheduleDatailsModal isVisible={showModal} schedule={details} onClick={() => setShowModal(false)} />
+         <LogoutModal isVisible={showLogout} onClick={() => setShowLogout(false)} />
         </PrivateRoute>
     )
 }
