@@ -71,7 +71,7 @@ type InfoProps = {
 }
 function Info({ title, children }: InfoProps) {
     return (
-        <h1 className="flex flex-wrap flex-col m-4">
+        <h1 className="flex text-gray-clear flex-wrap flex-col m-4">
             <strong>{title}</strong>{children}
         </h1>
     )

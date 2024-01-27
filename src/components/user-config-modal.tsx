@@ -8,6 +8,7 @@ import { BsCheckAll } from 'react-icons/bs'
 import { TfiEmail } from "react-icons/tfi";
 import { AiFillLock } from "react-icons/ai";
 import { RxUpdate } from 'react-icons/rx'
+import { useRouter } from "next/navigation";
 
 type Props = {
     isVisible: boolean
@@ -25,6 +26,7 @@ type Update = {
 }
 
 export default function UserConfigModal({ isVisible, onClick }: Props) {
+    const router = useRouter()
     const { userId, userName } = useGlobalContext()
     const [loading, setLoading] = useState<boolean>(false)
     const [userData, setUserData] = useState<UserData>({
@@ -74,11 +76,14 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
         onClick(false)
     }
 
-    async function updateUser() {
+    async function updateUser(e:any) {
+        e.preventDefault()
         try {
             const token = localStorage.getItem('token')
             await api.updateUser(userId, token!, updateData)
             ok()
+            localStorage.clear()
+            router.push("/")
         } catch (error: any) {
             const errorMessage = (
                 (error.response.data.message.message)
@@ -113,7 +118,7 @@ export default function UserConfigModal({ isVisible, onClick }: Props) {
                             </h2>
                         </section>
                         <form className="flex flex-col items-center sm:w-1/2 w-full sm:mt-0 mt-10 font-principal pb-4"
-                            onSubmit={() => updateUser()}>
+                            onSubmit={updateUser}>
                             <h2 className="text-xl text-gray-clear font-black mb-10">
                                 Atualizar dados
                             </h2>

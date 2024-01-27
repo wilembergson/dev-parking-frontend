@@ -123,7 +123,7 @@ export default function NewSchedule() {
                                 <h1 className='text-xl text-gray-clear font-black mr-4'>
                                     <span className="text-purple-500">RG: </span>
                                 </h1>
-                                <input className='flex bg-slate-200 focus:outline-none p-2 rounded-lg'
+                                <input className='flex text-gray-clear bg-slate-200 focus:outline-none p-2 rounded-lg'
                                     type="number"
                                     placeholder="RG"
                                     onChange={(e: any) => handleChange(e)}
@@ -144,7 +144,7 @@ export default function NewSchedule() {
                                         <h1 className='flex text-xl text-gray-clear font-black mr-4'>
                                             <span className="text-purple-500">Placa</span>
                                         </h1>
-                                        <input className='flex bg-slate-200 focus:outline-none p-2 rounded-lg'
+                                        <input className='flex text-gray-clear bg-slate-200 focus:outline-none p-2 rounded-lg'
                                             type="text"
                                             placeholder="Placa"
                                             onChange={(e: any) => handleChange(e)}
@@ -157,7 +157,7 @@ export default function NewSchedule() {
                                         <h1 className='text-xl text-gray-clear font-black mr-4'>
                                             <span className="text-purple-500">Preço por hora</span>
                                         </h1>
-                                        <input className='flex bg-slate-200 focus:outline-none p-2 rounded-lg'
+                                        <input className='flex text-gray-clear bg-slate-200 focus:outline-none p-2 rounded-lg'
                                             type="number"
                                             placeholder="Preço"
                                             onChange={(e: any) => handleChange(e)}

@@ -51,7 +51,9 @@ export default function HistoricItem({ info, details }: Props) {
     }, [])
 
     return (
-        <section className="flex font-principal shadow-md m-2 cursor-pointer hover:text-purple-500 hover:shadow-purple-500 transition duration-300" onClick={() => details(info)}>
+        <section className="flex font-principal shadow-md m-2 cursor-pointer rounded-lg
+        text-gray-clear hover:text-purple-500 hover:shadow-purple-500 transition duration-300"
+            onClick={() => details(info)}>
             <Item title="CheckIn">{checkIn}</Item>
             <Item title="Checkout">{checkOut}</Item>
             <Item title="Placa">{info.vehiclePlate}</Item>

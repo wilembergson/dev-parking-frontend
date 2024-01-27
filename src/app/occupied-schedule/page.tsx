@@ -87,7 +87,7 @@ export default function OccupiedSchedule() {
                                 <Span>Preço por hora:</Span> R${parseFloat(schedule?.pricePerHour).toFixed(2)}
                             </DataDescription>
                             <h1 className='text-3xl text-gray-clear font-black mt-4'>
-                                <span className="text-yellow">Valor total:</span> R${schedule?.priceTotal}
+                                <span className="text-yellow">Valor total:</span> R${parseFloat(schedule?.priceTotal).toFixed(2)}
                             </h1>
                         </section>
                         <section className="flex flex-col shadow-md m-4 p-4">
